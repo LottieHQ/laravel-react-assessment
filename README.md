@@ -52,6 +52,8 @@ $this->assertDatabaseHas('location', array_merge([
 
 ### React
 
+Please use React and Node for this task.
+
 - Create a simple list page that displays all the data that has been added to the database through the Laravel API.
 - Create a form on the above list page that will enable you to run a Query in the Laravel backend to filter the results that are displayed via Date Range, Status and Location Name fields.
 
