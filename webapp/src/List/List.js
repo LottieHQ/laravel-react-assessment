@@ -1,12 +1,15 @@
 import * as React from "react";
 
 import { Container, Title } from "./listStyles";
+import Loading from "./Loading";
 
 const List = () => {
   return (
-    <Container>
-      <Title>Locations</Title>
-    </Container>
+    <Loading>
+      <Container>
+        <Title>Locations</Title>
+      </Container>
+    </Loading>
   );
 };
 
