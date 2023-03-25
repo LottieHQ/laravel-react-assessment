@@ -1,14 +1,6 @@
 import styled from "styled-components";
 import { palette } from "utils/styleVariables";
 
-export const Title = styled.h1`
-  font-size: 32px;
-  line-height: 40px;
-  color: ${palette.navy};
-  font-weight: 600;
-  margin-bottom: 20px;
-`;
-
 export const Text = styled.p`
   font-size: 16px;
   /* line-height: 20px; */
@@ -25,21 +17,7 @@ export const TextContainer = styled.div`
   padding-right: 20px;
 `;
 
-export const Container = styled.div`
-  padding: 40px;
-  max-width: 1600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export const Main = styled.main`
-  display: flex;
-  width: 100%;
-  max-width: 1200px;
-`;
-
-export const List = styled.div`
+export const StyledList = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;

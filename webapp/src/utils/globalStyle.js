@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { palette } from "../utils/styleVariables";
+import { palette } from "utils/styleVariables";
 import "@fontsource/work-sans";
 
 const GlobalStyle = createGlobalStyle`
