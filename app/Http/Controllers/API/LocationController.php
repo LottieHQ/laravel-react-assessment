@@ -3,59 +3,59 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\EventPostRequest;
-use App\Http\Requests\API\EventPutRequest;
-use App\Http\Resources\API\EventResource;
-use App\Models\Event;
+use App\Http\Requests\API\LocationPostRequest;
+use App\Http\Requests\API\LocationPutRequest;
+use App\Http\Resources\API\LocationResource;
+use App\Models\Location;
 
 use Illuminate\Http\Request; //Needs changing?
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;
 
-class EventController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return EventResource::collection(Event::all());
+        return LocationResource::collection(Location::all());
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(EventPostRequest $request)
+    public function store(LocationPostRequest $request)
     {
         $data = $request->all();
-        $event = Event::create($data);
-        return new EventResource($event);
+        $location = Location::create($data);
+        return new LocationResource($location);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Event $event)
+    public function show(Location $location)
     {
-        return new EventResource($event);
+        return new LocationResource($location);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(EventPutRequest $request, Event $event)
+    public function update(LocationPutRequest $request, Location $location)
     {
         $data = $request->all();
-        $event->update($data);
-        return new EventResource($event);
+        $location->update($data);
+        return new LocationResource($location);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event)
+    public function destroy(Location $location)
     {
-        $event->delete();
+        $location->delete();
         return response(null, 204);
     }
 
@@ -67,7 +67,7 @@ class EventController extends Controller
         $until = $request ->get('until');
 
         //Update this to filter by all if/when used?
-        $event = DB::table('events')
+        $location = DB::table('location')
             ->when($status, function (Builder $query, string $status) {
                 $query->where('status', '=', $status);
             })
@@ -80,6 +80,6 @@ class EventController extends Controller
             ->when($until, function (Builder $query, string $until) {
                 $query->where('date_start', '<=', date($until));
             });
-        return $event->get();
+        return $location->get();
     }
 }
