@@ -1,12 +1,8 @@
 import React from "react";
-import List from "./List";
+import Home from "./Home";
 
 const App = () => {
-  return (
-    <div className="App">
-      <List />
-    </div>
-  );
+  return <Home />;
 };
 
 export default App;

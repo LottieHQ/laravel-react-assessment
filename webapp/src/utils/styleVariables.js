@@ -6,4 +6,5 @@ export const palette = {
   black: "#1a1a1a",
   yellow: "#eeff41",
   cream: "#f8ede7",
+  white: "#ffffff",
 };

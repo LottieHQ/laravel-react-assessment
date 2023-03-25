@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components'
-import { palette } from '../utils/styleVariables'
-import '@fontsource/work-sans'
+import { createGlobalStyle } from "styled-components";
+import { palette } from "../utils/styleVariables";
+import "@fontsource/work-sans";
 
 const GlobalStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -23,7 +23,6 @@ const GlobalStyle = createGlobalStyle`
         font: inherit;
         vertical-align: baseline;
         box-sizing: border-box;
-          background-color: ${palette.cream};
 
     }
     /* HTML5 display-role reset for older browsers */
@@ -52,11 +51,16 @@ const GlobalStyle = createGlobalStyle`
     body {
         height: 100vh;
         font-family: "work-sans", sans-serif;
+        background-color: ${palette.grey};
     }
     .container {
         width: 100%;
         height: 100%;
     }
-`
+    #root {
+        display: flex;
+        justify-content: center ;
+    }
+`;
 
-export default GlobalStyle
+export default GlobalStyle;

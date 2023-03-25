@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 
-const Loading = ({ children, loaded, handleLoaded }) => {
+const Loading = ({ children, loaded, list, handleLoaded }) => {
   useEffect(() => {
-    console.log(loaded);
     if (!loaded) {
       handleLoaded();
     }
