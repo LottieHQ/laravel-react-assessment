@@ -23,6 +23,8 @@ Route::group(["prefix" => "events"], function () {
     // GET /events: show all articles
     Route::get("", [EventController::class, "index"]);
 
+    Route::get("/search", [EventController::class, "search"]);
+
     // POST /articles: create a new article
     Route::post("", [EventController::class, "store"])->middleware('auth:api');
 

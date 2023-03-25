@@ -8,6 +8,10 @@ use App\Http\Requests\API\EventPutRequest;
 use App\Http\Resources\API\EventResource;
 use App\Models\Event;
 
+use Illuminate\Http\Request; //Needs changing?
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Query\Builder;
+
 class EventController extends Controller
 {
     /**
@@ -53,5 +57,29 @@ class EventController extends Controller
     {
         $event->delete();
         return response(null, 204);
+    }
+
+    public function search(Request $request)
+    {        
+        $status = $request ->get('status');
+        $location_name = $request ->get('location_name');
+        $from = $request ->get('from');
+        $until = $request ->get('until');
+
+        //Update this to filter by all if/when used?
+        $event = DB::table('events')
+            ->when($status, function (Builder $query, string $status) {
+                $query->where('status', '=', $status);
+            })
+            ->when($location_name, function (Builder $query, string $location_name) {
+                $query->where('location_name', 'like', '%'.$location_name.'%');
+            })
+            ->when($from, function (Builder $query, string $from) {
+                $query->where('date_start', '>=', date($from));
+            })
+            ->when($until, function (Builder $query, string $until) {
+                $query->where('date_start', '<=', date($until));
+            });
+        return $event->get();
     }
 }
