@@ -24,16 +24,16 @@ Route::group(["prefix" => "events"], function () {
     Route::get("", [EventController::class, "index"]);
 
     // POST /articles: create a new article
-    Route::post("", [EventController::class, "store"]);
+    Route::post("", [EventController::class, "store"])->middleware('auth:api');
 
     Route::group(["prefix" => "{event}"], function () {
         // GET /events/8: show the article
         Route::get("", [EventController::class, "show"]);
 
         // PUT /articles/8: update the article
-        Route::put("", [EventController::class, "update"]);
+        Route::put("", [EventController::class, "update"])->middleware('auth:api');
 
         // DELETE /articles/8: delete the article
-        Route::delete("", [EventController::class, "destroy"]);
+        Route::delete("", [EventController::class, "destroy"])->middleware('auth:api');
     });
 });
