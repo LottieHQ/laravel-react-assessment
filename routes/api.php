@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\EventsController;
+use App\Http\Controllers\API\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,19 +21,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(["prefix" => "events"], function () {
     // GET /events: show all articles
-    Route::get("", [EventsController::class, "index"]);
+    Route::get("", [EventController::class, "index"]);
 
     // POST /articles: create a new article
-    Route::post("", [EventsController::class, "store"]);
+    Route::post("", [EventController::class, "store"]);
 
     Route::group(["prefix" => "{event}"], function () {
         // GET /events/8: show the article
-        Route::get("", [EventsController::class, "show"]);
+        Route::get("", [EventController::class, "show"]);
 
         // PUT /articles/8: update the article
-        Route::put("", [EventsController::class, "update"]);
+        Route::put("", [EventController::class, "update"]);
 
         // DELETE /articles/8: delete the article
-        Route::delete("", [EventsController::class, "destroy"]);
+        Route::delete("", [EventController::class, "destroy"]);
     });
 });

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->date('date_start');
             $table->date('date_end');
             $table->string('status');
-            $table->string('location_name');
-            $table->longText('location_description');
+            $table->string('location_name', 100);
+            $table->string('location_description', 750);
             $table->timestamps();
         });
     }

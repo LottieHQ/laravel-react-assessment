@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\API\EventRequest;
 use App\Models\Event;
 
-class EventsController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class EventsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
         $data = $request->all();
         return Event::create($data);
@@ -36,7 +36,7 @@ class EventsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(EventRequest $request, Event $event)
     {
         $data = $request->all();
         $event->update($data);
