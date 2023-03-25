@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\EventRequest;
+use App\Http\Requests\API\EventPostRequest;
+use App\Http\Requests\API\EventPutRequest;
 use App\Http\Resources\API\EventResource;
 use App\Models\Event;
 
@@ -20,7 +21,7 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(EventRequest $request)
+    public function store(EventPostRequest $request)
     {
         $data = $request->all();
         $event = Event::create($data);
@@ -38,7 +39,7 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(EventRequest $request, Event $event)
+    public function update(EventPutRequest $request, Event $event)
     {
         $data = $request->all();
         $event->update($data);
