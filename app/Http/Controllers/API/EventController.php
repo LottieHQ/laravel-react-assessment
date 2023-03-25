@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\EventRequest;
+use App\Http\Resources\API\EventResource;
 use App\Models\Event;
 
 class EventController extends Controller
@@ -13,7 +14,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Event::all();
+        return EventResource::collection(Event::all());
     }
 
     /**
@@ -22,7 +23,8 @@ class EventController extends Controller
     public function store(EventRequest $request)
     {
         $data = $request->all();
-        return Event::create($data);
+        $event = Event::create($data);
+        return new EventResource($event);
     }
 
     /**
@@ -30,7 +32,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return $event;
+        return new EventResource($event);
     }
 
     /**
@@ -40,7 +42,7 @@ class EventController extends Controller
     {
         $data = $request->all();
         $event->update($data);
-        return $event;
+        return new EventResource($event);
     }
 
     /**
