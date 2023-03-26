@@ -67,7 +67,7 @@ class LocationController extends Controller
         $until = $request ->get('until');
 
         //Update this to filter by all if/when used?
-        $location = DB::table('location')
+        $location = DB::table('locations')
             ->when($status, function (Builder $query, string $status) {
                 $query->where('status', '=', $status);
             })
