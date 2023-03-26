@@ -40,8 +40,8 @@ const List = ({ list }) => {
         ))
       ) : (
         <EmptyContainer>
-          <Text>No results, please try again</Text>
           <LostImage />
+          <Text>No results, please try again</Text>
         </EmptyContainer>
       )}
     </StyledList>
