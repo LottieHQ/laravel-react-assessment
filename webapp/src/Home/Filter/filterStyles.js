@@ -6,6 +6,9 @@ export const Form = styled.div`
   border: 2px solid ${palette.navy};
   border-radius: 16px;
   padding: 10px 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
 `;
 
 export const Label = styled.p`
