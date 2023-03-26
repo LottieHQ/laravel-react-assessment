@@ -16,7 +16,13 @@ import { palette } from "utils/styleVariables";
 const List = ({ list }) => {
   return (
     <StyledList>
-      {list.length ? (
+      {!list.length && (
+        <EmptyContainer>
+          <LostImage />
+          <Text>No results, please try again</Text>
+        </EmptyContainer>
+      )}
+      {list &&
         list.map((item, i) => (
           <ListItem key={item.location_name + i}>
             <TextContainer>
@@ -38,13 +44,7 @@ const List = ({ list }) => {
               </Text>
             </Status>
           </ListItem>
-        ))
-      ) : (
-        <EmptyContainer>
-          <LostImage />
-          <Text>No results, please try again</Text>
-        </EmptyContainer>
-      )}
+        ))}
     </StyledList>
   );
 };
