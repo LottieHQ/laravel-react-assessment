@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { LoadingImage } from "./loadingStyles";
 
-const Loading = ({ children, loaded, list, handleLoaded }) => {
+const Loading = ({ children, loaded, handleLoaded }) => {
   useEffect(() => {
     if (!loaded) {
       handleLoaded();
