@@ -76,6 +76,13 @@ User::create([
 
 1. If everything is setup correctly, you should get back a Bearer token that can use to make `POST`, `PUT` and `DELETE` requests
 
+<h3>Tests</h3>
+
+To run the Laravel tests, follow these steps:
+
+1. `cd` into `laravel-react-assessment/laravel-api`
+2. Run `sail test --testsuite Unit`
+
 <h2>Possible improvements</h2>
 
 Below are some things that I didn't have time for but would have liked to have added:
