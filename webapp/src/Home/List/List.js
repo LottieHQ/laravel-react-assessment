@@ -2,9 +2,11 @@ import React from "react";
 import { format } from "date-fns";
 
 import {
-  StyledList,
+  EmptyContainer,
+  LostImage,
   ListItem,
   Status,
+  StyledList,
   Text,
   TextContainer,
 } from "./listStyles";
@@ -13,7 +15,7 @@ import { palette } from "utils/styleVariables";
 const List = ({ list }) => {
   return (
     <StyledList>
-      {list &&
+      {list.length ? (
         list.map((item, i) => (
           <ListItem key={item.location_name + i}>
             <TextContainer>
@@ -35,7 +37,13 @@ const List = ({ list }) => {
               </Text>
             </Status>
           </ListItem>
-        ))}
+        ))
+      ) : (
+        <EmptyContainer>
+          <Text>No results, please try again</Text>
+          <LostImage />
+        </EmptyContainer>
+      )}
     </StyledList>
   );
 };

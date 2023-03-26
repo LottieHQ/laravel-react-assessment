@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { palette } from "utils/styleVariables";
+import lost from "assets/animations/lost.gif";
 
 export const Text = styled.p`
   font-size: 16px;
@@ -20,6 +21,7 @@ export const StyledList = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  height: 100%;
 `;
 
 export const ListItem = styled.div`
@@ -42,4 +44,20 @@ export const Status = styled.div`
   justify-content: center;
   height: 42px;
   min-width: 75px;
+`;
+
+export const EmptyContainer = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const LostImage = styled.div`
+  background: url(${lost}) center no-repeat;
+  background-size: contain;
+  width: 200px;
+  height: 200px;
+  margin: 20px;
 `;

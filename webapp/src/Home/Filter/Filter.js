@@ -44,12 +44,14 @@ const Filter = () => {
       <DatePickerContainer>
         <DatePicker
           name="from"
+          label="From"
           onChange={(value) => setFieldValue("from", value)}
           value={values.from}
           format="DD/MM/YYYY"
         />
         <DatePicker
           name="until"
+          label="Until"
           onChange={(value) => setFieldValue("until", value)}
           value={values.until}
           format="DD/MM/YYYY"

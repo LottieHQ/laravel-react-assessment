@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 
+import { LoadingImage } from "./loadingStyles";
+
 const Loading = ({ children, loaded, list, handleLoaded }) => {
   useEffect(() => {
     if (!loaded) {
@@ -7,12 +9,6 @@ const Loading = ({ children, loaded, list, handleLoaded }) => {
     }
   });
 
-  return loaded ? (
-    children
-  ) : (
-    <div>
-      <p>Loading...</p>
-    </div>
-  );
+  return loaded ? children : <LoadingImage />;
 };
 export default Loading;

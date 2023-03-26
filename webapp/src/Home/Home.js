@@ -7,15 +7,15 @@ import Loading from "./Loading";
 
 const Home = () => {
   return (
-    <Loading>
-      <Container>
-        <Title>Locations</Title>
-        <Main>
+    <Container>
+      <Title>Locations</Title>
+      <Main>
+        <Loading>
           <List />
-          <Filter />
-        </Main>
-      </Container>
-    </Loading>
+        </Loading>
+        <Filter />
+      </Main>
+    </Container>
   );
 };
 
