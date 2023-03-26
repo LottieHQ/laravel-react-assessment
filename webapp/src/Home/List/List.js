@@ -1,5 +1,6 @@
-import React from "react";
 import { format } from "date-fns";
+import PropTypes from "prop-types";
+import React from "react";
 
 import {
   EmptyContainer,
@@ -46,6 +47,18 @@ const List = ({ list }) => {
       )}
     </StyledList>
   );
+};
+
+List.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      location_name: PropTypes.string.isRequired,
+      location_description: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      date_start: PropTypes.string.isRequired,
+      date_end: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default List;

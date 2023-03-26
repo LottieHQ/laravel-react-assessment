@@ -1,9 +1,11 @@
-import React from "react";
 import { Formik, useFormikContext } from "formik";
-import { DatePicker } from "@mui/x-date-pickers";
+import PropTypes from "prop-types";
+import React from "react";
+import * as yup from "yup";
+
 import { FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import * as yup from "yup";
+import { DatePicker } from "@mui/x-date-pickers";
 
 import {
   Button,
@@ -33,6 +35,10 @@ const ConnectedFilter = ({ handleFilteredList }) => {
       <Filter />
     </Formik>
   );
+};
+
+ConnectedFilter.propTypes = {
+  handleFilteredList: PropTypes.func.isRequired,
 };
 
 const Filter = () => {

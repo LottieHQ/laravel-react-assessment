@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Container, Main, Title } from "./homeStyles";
 import Filter from "./Filter";
+import { Container, Main, Title } from "./homeStyles";
 import List from "./List";
 import Loading from "./Loading";
 

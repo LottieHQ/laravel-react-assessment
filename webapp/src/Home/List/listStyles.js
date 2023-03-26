@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-import { palette } from "utils/styleVariables";
-import { device } from "utils/styleVariables";
 import lost from "assets/animations/lost.gif";
+import { device, palette } from "utils/styleVariables";
 
 export const Text = styled.p`
   font-size: 16px;

@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import { palette } from "utils/styleVariables";
 import "@fontsource/work-sans";
+
+import { palette } from "utils/styleVariables";
 
 const GlobalStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,

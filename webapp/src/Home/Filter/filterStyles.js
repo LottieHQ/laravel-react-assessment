@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-import { device } from "utils/styleVariables";
-import { palette } from "utils/styleVariables";
+import { device, palette } from "utils/styleVariables";
 
 export const Form = styled.div`
   width: 100%;

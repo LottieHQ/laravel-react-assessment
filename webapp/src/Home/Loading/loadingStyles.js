@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import loading from "assets/animations/loading.gif";
 
 export const LoadingImage = styled.div`
