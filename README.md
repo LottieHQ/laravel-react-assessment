@@ -2,7 +2,12 @@
 
 <h2>Instructions</h2>
 
-To set this project up locally on your machine, you will require Composer and Docker installed. If on Mac, you can easily install composer with Homebrew: `brew install composer`. Otherwise, instructions can be found [here](https://www.geeksforgeeks.org/how-to-install-php-composer-on-windows/). Docker can be downloaded from the website [here](https://www.docker.com/).
+To set this project up locally on your machine, the following will need to be installed on your machine:
+
+- Composer: If on Mac, you can easily install composer with Homebrew: `brew install composer`. Otherwise, instructions can be found [here](https://www.geeksforgeeks.org/how-to-install-php-composer-on-windows/).
+- Docker: Docker can be downloaded from the website [here](https://www.docker.com/).
+- PHP: If on Mac, you can easily install PHP with Homebrew: `brew install php`. Otherwise, instructions can be found [here](https://www.php.net/manual/en/install.windows.php).
+- Mysql: If on Mac, you can easily install PHP with Homebrew: `brew install mysql`. Otherwise, instructions can be found [here](https://dev.mysql.com/downloads/installer/).
 
 <h3>Laravel backend setup</h3>
 
