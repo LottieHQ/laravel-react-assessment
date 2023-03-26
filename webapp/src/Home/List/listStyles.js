@@ -1,5 +1,7 @@
 import styled from "styled-components";
+
 import { palette } from "utils/styleVariables";
+import { device } from "utils/styleVariables";
 import lost from "assets/animations/lost.gif";
 
 export const Text = styled.p`
@@ -20,18 +22,26 @@ export const TextContainer = styled.div`
 export const StyledList = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
   height: 100%;
+  order: 2;
+  @media ${device.tablet} {
+    width: 50%;
+    order: 1;
+  }
 `;
 
 export const ListItem = styled.div`
   padding: 10px 20px;
   border: 2px solid ${palette.navy};
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 16px;
   display: flex;
   justify-content: space-between;
   background-color: ${palette.grey};
+  @media ${device.tablet} {
+    margin-bottom: 10px;
+  }
 `;
 
 export const Status = styled.div`

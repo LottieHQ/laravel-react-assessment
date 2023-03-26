@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, useFormikContext } from "formik";
 import { DatePicker } from "@mui/x-date-pickers";
 import { FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import * as yup from "yup";
 
 import {
@@ -11,7 +12,7 @@ import {
   InputContainer,
   Label,
 } from "./filterStyles";
-import { palette } from "utils/styleVariables";
+import { palette, device } from "utils/styleVariables";
 
 const validationSchema = yup.object().shape({
   from: yup.date().nullable(),
@@ -37,6 +38,7 @@ const ConnectedFilter = ({ handleFilteredList }) => {
 const Filter = () => {
   const { handleChange, handleSubmit, setFieldValue, values } =
     useFormikContext();
+  const tablet = !useMediaQuery(device.tablet);
 
   return (
     <Form>
@@ -63,7 +65,7 @@ const Filter = () => {
           name="status"
           value={values.status}
           onChange={handleChange}
-          aria-labelledby="demo-radio-buttons-group-label"
+          row={tablet}
         >
           <FormControlLabel
             value="open"

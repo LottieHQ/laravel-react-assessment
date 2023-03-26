@@ -1,14 +1,22 @@
 import styled from "styled-components";
+
+import { device } from "utils/styleVariables";
 import { palette } from "utils/styleVariables";
 
 export const Form = styled.div`
-  width: 50%;
+  width: 100%;
+  order: 1;
   border: 2px solid ${palette.navy};
   border-radius: 16px;
   padding: 10px 20px;
   position: -webkit-sticky;
-  position: sticky;
   top: 20px;
+
+  @media ${device.tablet} {
+    width: 50%;
+    order: 2;
+    position: sticky;
+  }
 `;
 
 export const Label = styled.p`
@@ -20,6 +28,7 @@ export const Label = styled.p`
 `;
 
 export const Button = styled.button`
+  width: 100%;
   background-color: ${palette.grey};
   border: 2px solid ${palette.red};
   border-radius: 8px;
@@ -29,12 +38,22 @@ export const Button = styled.button`
   :active {
     border: 2px solid ${palette.yellow};
   }
+
+  @media ${device.tablet} {
+    width: auto;
+  }
 `;
 
 export const DatePickerContainer = styled.div`
   display: flex;
+  flex-direction: column;
   grid-gap: 20px;
   margin-bottom: 20px;
+
+  @media ${device.tablet} {
+    width: auto;
+    flex-direction: row;
+  }
 `;
 
 export const InputContainer = styled.div`

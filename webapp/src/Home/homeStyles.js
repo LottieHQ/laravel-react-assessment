@@ -1,4 +1,6 @@
 import styled from "styled-components";
+
+import { device } from "utils/styleVariables";
 import { palette } from "utils/styleVariables";
 
 export const Title = styled.h1`
@@ -26,36 +28,29 @@ export const TextContainer = styled.div`
 `;
 
 export const Container = styled.div`
-  padding: 40px;
+  padding: 20px;
   max-width: 1600px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+
+  @media ${device.tablet} {
+    padding: 40px;
+  }
 `;
 
 export const Main = styled.main`
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   width: 100%;
   max-width: 1200px;
   grid-gap: 50px;
-`;
 
-export const List = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-`;
-
-export const ListItem = styled.div`
-  padding: 10px 20px;
-  border: 2px solid ${palette.navy};
-  margin-bottom: 10px;
-  border-radius: 16px;
-  display: flex;
-  justify-content: space-between;
-  background-color: ${palette.grey};
+  @media ${device.tablet} {
+    flex-direction: row;
+  }
 `;
 
 export const Status = styled.div`

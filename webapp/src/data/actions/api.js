@@ -37,7 +37,6 @@ export const getList = () => {
 export const getFilteredList = (filters) => {
   return (dispatch) => {
     axios.get(generateQueryString(filters)).then(({ data }) => {
-      console.log("DATA: ", data);
       dispatch(filtered(data));
     });
   };
