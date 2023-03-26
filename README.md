@@ -1,63 +1,98 @@
-# laravel-react-assessment
+<h1>Lottie: Laravel React Assessment</h1>
 
-Please take as much time as you need to take the test, we understand that you may be busy or just not finding time. Also, we think people should not invest much time in assessments as there are better things to do in life.
+<h2>Instructions</h2>
 
-We expect you to spend 3 or 4 hours on this technical task, which we think is reasonable.
+To set this project up locally on your machine, the following will need to be installed on your machine:
 
-This assessment is intentionally bare on specifics as we want to give you some freedom, so feel free to focus on your strength, whether that’s code cleanliness, front-end design, one of the bonus features, etc. We are aware that given the time spent one can only provide certain builtin quality
+- Composer: If on Mac, you can easily install composer with Homebrew: `brew install composer`. Otherwise, instructions can be found [here](https://www.geeksforgeeks.org/how-to-install-php-composer-on-windows/).
+- Docker: Docker can be downloaded from the website [here](https://www.docker.com/).
+- PHP: If on Mac, you can easily install PHP with Homebrew: `brew install php`. Otherwise, instructions can be found [here](https://www.php.net/manual/en/install.windows.php).
+- Mysql: If on Mac, you can easily install PHP with Homebrew: `brew install mysql`. Otherwise, instructions can be found [here](https://dev.mysql.com/downloads/installer/).
 
-## Instructions
+<h3>Laravel backend setup</h3>
 
-Please follow these instructions carefully, please note that following the instructions thoroughly is part of the assessment.
+1. Clone this repo from Github. Once cloned, `cd` into `laravel-react-assessment/laravel-api` and run `composer install`.
+2. Copy your `.env.example` file into a new `.env` file and configure any passwords needed to access your mysql databases.
+3. Run the `./vendor/bin/sail up` command (make sure the Docker application is up and running on your machine first). To save time, it is worth creating a shell alias for `sail` so you can execute these commands more easily:
 
-- Fork this repo.
-- Work on your own copy of the repo.
-- Your work should be easily deployable either locally in a laptop, or in a cloud provider service, such as Vercel, etc.
-- Please update the README so that it includes instructions on how to run, or deploy, and how to test the submitted code.
-- Please make sure that we can easily run and test the code, please do not assume that we have already setup any specific database or dependency.
-- Once you've finished please subbmit a Pull Request (PR) to this original repo.
-- We may ask you to comment on some implementations or even suggest some code changes, please react to them as you would normally do with any PR.
-- Once we're done reviewing we will contact you via email or phone.
-
-## Tasks
-
-### Laravel
-
-Please use the Laravel framework for this task.
-
-- Create a Laravel Application that connects to MySQL.
-- Create an API endpoint that receives: `Date Start`, `Date End`, `Status` (open or closed), `Location Name` and `Location Description` (mandatory fields) and returns location data.
-- Include the below PHPUnit test for your API and ensure that it passes:
 ```
-public function api_can_store_location_data()
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+```
+
+4. Run the following commands:
+
+```
+sail artisan key:generate
+composer update
+sail artisan storage:link
+sail artisan migrate --seed
+```
+
+5. If you check Docker, you should see that the Docker container is now up and running
+
+<h3>React frontend setup</h3>
+
+1. `cd` into `laravel-react-assessment/webapp`
+2. Run `npm install`
+3. Run `npm run start`
+4. You should now be able to access the site in your browser at http://localhost:3000/
+
+<h3>Factory seed</h3>
+
+Once you have the app up and running, there won't be any initial Location data in the database. You can either manually add some items using Postman (see blow), or if you're feeling lazy we can populate the database with some dummy data using the Location factory and seeder:
+
+1. `cd` into `laravel-react-assessment/laravel-api`
+2. Run `sail artisan db:seed --class=LocationsTableSeeder`
+3. Voila! There are now 20 Locations available 🥳
+
+<h3>API endpoint</h3>
+
+The locations api endpoint will be `http://127.0.0.1/api/locations`
+(If for any reason this is different, e.g. you set your API to run on a different IP address, you will need to make sure you update this in `laravel-react-assessment/webapp/src/data/axios.js`)
+
+<h3>Authentication</h3>
+
+In order to make a `POST`, `PUT` or `DELETE` request to the api, you will need to be authenticated. In order to get yourself set up as an authenticated user, please follow these steps:
+
+1. `cd` into `laravel-react-assessment/laravel-api`
+2. Run `sail artisan passport:install`
+3. Make a note of the password grant Client ID and Client Secret that are returned.
+4. Create a User for yourself using `sail artisan tinker`:
+
+```
+User::create([
+    'name' => 'A user',
+    'email' => 'some.guy@gmail.com',
+    'password' => Hash::make('password'),
+]);
+```
+
+1. You should now be able to make a `POST` request in Postman to http://127.0.0.1/oauth/token with the body (sent as form data):
+
+```
 {
-$this->withoutExceptionHandling();
-$location = factory(Location::class)->create(); $this->requestData[‘location_name'] = $location->location_name; $this->requestData[‘location_description'] = $location->location_description; $this->requestData[‘date_start’] = $location->date_start; $this->requestData[‘date_end’] = $location->date_end;
-$this->json('POST', route('api.location.store'), $this->requestData) ->assertSuccessful();
-$this->assertLocationCreated($location); }
-```
-```
-protected function assertLocationCreated($location, $data = [ ])
-{
-$this->assertDatabaseHas('location', array_merge([
-'location_name' => $this->requestData['location_name'], 'location_description' => $this->requestData['location_description'], 'date_start' => $this->requestData['date_start'],
-'date_end' => $this->requestData['date_end'],
-'location_id' => $location->id,
-], $data)); }
+    "grant_type": "password",
+    "client_id": "<your_client_id>",
+    "client_secret": "<your_client_secret>",
+    "username": "an.author@gmail.com",
+    "password": "password"
+}
 ```
 
-#### Bonus points
+1. If everything is setup correctly, you should get back a Bearer token that can use to make `POST`, `PUT` and `DELETE` requests
 
-- Data submitted via the API should be validated and appropriate error messages returned for things like incorrectly formatted dates.
+<h3>Tests</h3>
 
-### React
+To run the Laravel tests, follow these steps:
 
-Please use React and Node for this task.
+1. `cd` into `laravel-react-assessment/laravel-api`
+2. Run `sail test --testsuite Unit`
 
-- Create a simple list page that displays all the data that has been added to the database through the Laravel API.
-- Create a form on the above list page that will enable you to run a Query in the Laravel backend to filter the results that are displayed via Date Range, Status and Location Name fields.
+<h2>Possible improvements</h2>
 
-#### Bonus points
+Below are some things that I didn't have time for but would have liked to have added:
 
-- The frontend should be simple but any additional work put into the presentation will be included in the evaluation.
-- Pagination.
+1. Pagination on backend and frontend - I wasn't able to do this purely because of time constraints, but if I'd had more time to work on this then this would have been the next bit of functionality I would have added.
+2. I would have liked to have built the frontend in Typescript, however I have not previously used Redux and Typescript together. I did some reading around this but decided in the interests of time to go with what I know rather than spending too much time figuring that out. However, if I'd had more time I would have liked to have gone down this route.
+3. I used `redux`'s `createStore` to create my store, however I believe Redux now recommends using the `configureStore` function from `@reduxjs/toolkit` instead as it simplifies things. I again decided to go with what I know in the interests of time, but if I'd had more time I would have liked to investigate this option more.
+4. I've set up validation in Laravel, however one thing I wasn't sure of how to do was to improve the error message for the `status` field - if you try and send a value that isn't `open` or `closed` the error message says the given value is invalid, but it would be nice to also specify what the accepted values are in the error message.
