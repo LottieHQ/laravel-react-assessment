@@ -43,6 +43,7 @@ Once you have the app up and running, there won't be any initial Location data i
 <h3>API endpoint</h3>
 
 The locations api endpoint will be `http://127.0.0.1/api/locations`
+(If for any reason this is different, e.g. you set your API to run on a different IP address, you will need to make sure you update this in `laravel-react-assessment/webapp/src/data/axios.js`)
 
 <h3>Authentication</h3>
 
