@@ -31,12 +31,15 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 `;
 
 export const Main = styled.main`
   display: flex;
+  align-items: flex-start;
   width: 100%;
   max-width: 1200px;
+  grid-gap: 50px;
 `;
 
 export const List = styled.div`

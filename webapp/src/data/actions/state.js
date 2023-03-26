@@ -4,3 +4,10 @@ export const loaded = (list) => {
     list: list.data,
   };
 };
+
+export const filtered = (list) => {
+  return {
+    type: "filtered",
+    list: list,
+  };
+};

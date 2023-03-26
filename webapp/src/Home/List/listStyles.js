@@ -3,7 +3,6 @@ import { palette } from "utils/styleVariables";
 
 export const Text = styled.p`
   font-size: 16px;
-  /* line-height: 20px; */
   color: ${(props) => (props.color ? props.color : palette.navy)};
   font-weight: ${(props) => (props.bold ? "600" : "400")};
   padding-bottom: ${(props) => (props.gutterBottom ? "10px" : "0")};
