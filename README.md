@@ -50,13 +50,23 @@ composer install
 Start the Docker container:
 ```bash
 sail up -d
-
-# Project will now be accessible at http://localhost
 ```
 
 Migrate the database:
 ```bash
 sail artisan migrate
+```
+
+Install frontend dependencies
+```bash
+sail npm install
+```
+
+Run the frontend development server
+```bash
+sail npm run dev
+
+# Project will now be accessible at http://localhost
 ```
 
 Seed the database:
