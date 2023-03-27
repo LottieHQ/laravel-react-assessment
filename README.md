@@ -1,63 +1,103 @@
-# laravel-react-assessment
+# Laravel React Assessment
 
-Please take as much time as you need to take the test, we understand that you may be busy or just not finding time. Also, we think people should not invest much time in assessments as there are better things to do in life.
+This repository hosts the assessment code for the Laravel React Assessment.
 
-We expect you to spend 3 or 4 hours on this technical task, which we think is reasonable.
+## Requirements
 
-This assessment is intentionally bare on specifics as we want to give you some freedom, so feel free to focus on your strength, whether that’s code cleanliness, front-end design, one of the bonus features, etc. We are aware that given the time spent one can only provide certain builtin quality
+- Docker
+- A local version of PHP 8.1 installed for initial setup
+- A local version of Composer installed for initial setup
 
-## Instructions
+**IMPORTANT NOTE:**
+This project uses port 3307 for MySQL instead of the standard 3306,
+this is to prevent port conflicts if you have an existing MySQL instance running locally.
 
-Please follow these instructions carefully, please note that following the instructions thoroughly is part of the assessment.
+## Versions
 
-- Fork this repo.
-- Work on your own copy of the repo.
-- Your work should be easily deployable either locally in a laptop, or in a cloud provider service, such as Vercel, etc.
-- Please update the README so that it includes instructions on how to run, or deploy, and how to test the submitted code.
-- Please make sure that we can easily run and test the code, please do not assume that we have already setup any specific database or dependency.
-- Once you've finished please subbmit a Pull Request (PR) to this original repo.
-- We may ask you to comment on some implementations or even suggest some code changes, please react to them as you would normally do with any PR.
-- Once we're done reviewing we will contact you via email or phone.
+- PHP 8.1
+- Laravel 10.x
 
-## Tasks
+## Installation
 
-### Laravel
+NOTE: Before getting started with the setup, I'd recommend setting up a shell alias for Sail. This will allow you to run `sail` instead of `./vendor/bin/sail`.
 
-Please use the Laravel framework for this task.
-
-- Create a Laravel Application that connects to MySQL.
-- Create an API endpoint that receives: `Date Start`, `Date End`, `Status` (open or closed), `Location Name` and `Location Description` (mandatory fields) and returns location data.
-- Include the below PHPUnit test for your API and ensure that it passes:
-```
-public function api_can_store_location_data()
-{
-$this->withoutExceptionHandling();
-$location = factory(Location::class)->create(); $this->requestData[‘location_name'] = $location->location_name; $this->requestData[‘location_description'] = $location->location_description; $this->requestData[‘date_start’] = $location->date_start; $this->requestData[‘date_end’] = $location->date_end;
-$this->json('POST', route('api.location.store'), $this->requestData) ->assertSuccessful();
-$this->assertLocationCreated($location); }
-```
-```
-protected function assertLocationCreated($location, $data = [ ])
-{
-$this->assertDatabaseHas('location', array_merge([
-'location_name' => $this->requestData['location_name'], 'location_description' => $this->requestData['location_description'], 'date_start' => $this->requestData['date_start'],
-'date_end' => $this->requestData['date_end'],
-'location_id' => $location->id,
-], $data)); }
+```bash
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 ```
 
-#### Bonus points
+For brevity, the following commands assume you have the shell alias set up. If this isn't the case then simply replace use `./vendor/bin/sail` instead of `sail`.
 
-- Data submitted via the API should be validated and appropriate error messages returned for things like incorrectly formatted dates.
+Clone the project:
+```bash
+git clone git@github.com:bradsi/laravel-react-assessment.git
+```
 
-### React
+Generate the `.env` file:
+```bash
+cp .env.example .env
+```
 
-Please use React and Node for this task.
+Generate an application key:
+```bash
+sail artisan key:generate
+```
 
-- Create a simple list page that displays all the data that has been added to the database through the Laravel API.
-- Create a form on the above list page that will enable you to run a Query in the Laravel backend to filter the results that are displayed via Date Range, Status and Location Name fields.
+Install composer dependencies (including Sail):
+```bash
+composer install
+```
 
-#### Bonus points
+Start the Docker container:
+```bash
+sail up -d
 
-- The frontend should be simple but any additional work put into the presentation will be included in the evaluation.
-- Pagination.
+# Project will now be accessible at http://localhost
+```
+
+Migrate the database:
+```bash
+sail artisan migrate
+```
+
+Seed the database:
+```bash
+sail artisan db:seed
+
+# Will create 25 Location records
+```
+
+Run the tests:
+```bash
+sail artisan test
+```
+
+## Helpful Commands
+
+Stop the container:
+```bash
+sail stop
+```
+
+Delete the container:
+```bash
+sail down
+```
+
+## Notes:
+I've tried to keep this as simple as possible due to time constraints.  
+Below are some changes I would make given more time or just to make this more production ready.  
+I've also included some notes on my process.
+
+- **API Authentication** - I would use Laravel Sanctum for API authentication
+- **Remove Inertia** - I decided to use Inertia with React for the frontend as I've heard some good things and hoped it would help streamline the frontend process.
+I found that Inertia wasn't too bad to work with, but overall made things a bit more awkward compared to having the frontend as a separate project. In a production application I would
+decouple the frontend and API, with the frontend being built in something like Next.js
+- **Responsiveness** - I've not paid too much attention to the responsiveness of the frontend due to time constraints, so this could definitely be improved.
+- **Testing** - I used Pest for PHP tests, this is a wrapper around PHPUnit and provides some additional functionality, I also prefer the syntax. If moving to production I would add tests for the frontend using something like Jest.
+- **API Tooling** - To make this more production ready I'd add various dependencies for the API such as the following:
+  - Parallel Testing Tool for Pest
+  - Code Coverage with Pcov
+  - GitHub Action workflow
+  - Static Analysis (PHPStan and Larastan)
+- **Service Classes** - I like to keep my search functionality under the `index` endpoint. However, this bloats the Controller especially if you can search against many fields. I would extract this logic to a service class to keep the Controller clean.
+- **Eloquent API Resources** - I would also create an API Resource class, so I could customise the JSON response. In this case I didn't bother since the only thing I didn't like was the date formatting on the frontend.
