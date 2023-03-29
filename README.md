@@ -1,4 +1,19 @@
-# laravel-react-assessment
+# Setup
+
+Run the locations migration to create the `locations` table and seed data: 
+
+`php artisan migrate --path=/database/migrations/2023_03_24_103029_locations.php`
+
+`php artisan db:seed --class=LocationSeeder`
+
+### React
+
+Some explanations of what I would do in React can be found in `resources/js/app.js`
+
+#### Tests
+Unfortunately tests are *not* passing currently. I am working on getting them to pass correctly
+
+## laravel-react-assessment
 
 Please take as much time as you need to take the test, we understand that you may be busy or just not finding time. Also, we think people should not invest much time in assessments as there are better things to do in life.
 
