@@ -1,4 +1,17 @@
-# laravel-react-assessment
+# Setup instructions
+1. PHP: Please ensure you have PHP installed:
+    1. Mac users can use Homebrew to install php: `brew install php`
+    2. To install on windows follow instructions [here](https://www.php.net/manual/en/install.windows.php) 
+    3. All other OS's or platforms have installation instructions [here](https://www.php.net/manual/en/install.php) 
+2. Composer: Please you have composer installed:
+    1. Mac users can use Homebrew to install `brew install composer`
+    2. Windows users can find step by step installation instructions [here](https://www.geeksforgeeks.org/how-to-install-php-composer-on-windows/) or direct composer website steps [here](https://getcomposer.org/doc/00-intro.md#installation-windows)
+    3. For all other OS's platforms please find setup instructions [here](https://getcomposer.org/doc/00-intro.md) 
+3. Git: Please ensure you have Git installed:
+    1. Download Git for your OS/platform from [here](https://git-scm.com/downloads)
+    2. Use the command `git clone this-branch-name here`
+    3. TODO::Add correct link/branch above
+
 
 Please take as much time as you need to take the test, we understand that you may be busy or just not finding time. Also, we think people should not invest much time in assessments as there are better things to do in life.
 
