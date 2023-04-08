@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\LocationController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/test', function () {
-    return 'endpoint test';
-});
+Route::get('locations', [LocationController::class, 'index']);
