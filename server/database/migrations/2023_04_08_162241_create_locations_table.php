@@ -14,12 +14,12 @@ return new class extends Migration
    
     Schema::create('locations', function (Blueprint $table) {
       $table->id();
-      $table->date('date_start');
-      $table->date('date_end');
-      $table->boolean('status'); //TODO::This could be an enum
       $table->string('name');  // TODO::Maybe we should limit length of name/description
       $table->string('description');
-      
+      $table->string('status'); //TODO::This could be an enum
+      $table->date('date_start');
+      $table->date('date_end');
+
       $table->timestamps();
     });
   }

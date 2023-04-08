@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  const OPEN = 'open';
+  const CLOSED = 'closed';
+
+  const STATUSES = [
+    self::OPEN,
+    self::CLOSED,
+  ];
+
 }
