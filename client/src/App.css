@@ -24,53 +24,42 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+/* GLOBAL ELEMENT STYLES START */
+input, select {
+  background-color: #6a9ecc;
+}
+/* GLOBAL ELEMENT STYLES END */
+
+
+/* SCREEN START */
 .screen {
   display:flex; 
+  flex-direction: column;
   gap: 4rem;
   padding: 1rem;
   width: 80%;
 }
 
+/* SCREEN END */
+
+
+/* CREATE-FILTER-CONTAINER START */
+
+.create-filter-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* CREATE-FILTER-CONTAINER END */
+
+
+/* LOCATIONS-CONTAINER START  */
+
 .locations-container {
-  display: flex;
-  flex-direction: column;
-  width:50%;
+  display: grid;
+  grid-template-columns: auto auto auto;
   gap:1rem
-}
-
-.create-location-container {
-  width:50%;
-  height: 100%;
-  border: 1px solid blue;
-  padding: 1rem;
-  border-radius: 2rem;
-
-}
-form {
-  display:flex;
-  flex-direction: column;
-  gap:1rem
-}
-
-input, select {
-  background-color: #6a9ecc;
-}
-
-form > button {
-  background-color: #60e66b;
-}
-
-
-.date-picker-container {
-  display: flex;
-  gap:1rem;
-}
-
-.date-and-label {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  font-size: small;
 }
 
 /* EXTRA::This would be better suited to Grid */
@@ -81,7 +70,8 @@ form > button {
   padding: 1rem;
   border-radius: 2rem;
   border: 1px solid orange;
-  height: 10rem;
+  height: 12rem;
+  overflow: auto;
 }
 
 .closed {
@@ -103,6 +93,33 @@ form > button {
   gap: 1rem;
 
 }
+/* LOCATIONS-CONTAINER END  */
+
+form {
+  display:flex;
+  flex-direction: column;
+  gap:1rem
+}
+
+form > button {
+  background-color: #60e66b;
+}
+
+.date-picker-container {
+  display: flex;
+  gap:1rem;
+}
+
+.date-and-label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: small;
+}
+
+/* CREATE-LOCATIONS-CONTAINER END  */
+
+
 
 /* EXTRA::With extra time I would've used styled components and media queries for more thoughtful responsiveness */
 /* Small Devices, Tablets */

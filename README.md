@@ -54,6 +54,12 @@
 - I would have been more mindful of responsiveness
 - I would have been more mindful of accessibility and make the site more suitable for screen readers
 - I would investigate the re-renders currently being triggered by form inputs and consider if the `useRef` hook would be useful to prevent re-renders each keystroke - unlikely but if the page where to become very busy it would be a possible solution
+- Majority of the styling would have likely benefitted from being implemented in CSS grid, however I used flex box for the sake of time
+- I would have used a library to display a toast for responses from the server
+  - The current implementation below the 'create' button doesn't correctly draw the users attention
+- Would have added missing CRUD functionality
+  - Update
+  - Delete
 
 ---
 
@@ -64,6 +70,9 @@
 - I would have implemented [laravel sail](https://laravel.com/docs/10.x/sanctum) to authentication, especially as its designed for environments where laravel is being used purely as a backend/server
 - To extend the point above, once there is authentication it could be appropriate to create middleware that only lets users of certain permissions to access/create `Locations`
 - I would have leveraged [laravel scopes](https://laravel.com/docs/10.x/eloquent#local-scopes) 
+- Would have added missing CRUD functionality
+  - Update
+  - Delete
 
 ---
 

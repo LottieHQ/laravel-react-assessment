@@ -64,6 +64,8 @@ function App() {
     }));
   };
 
+  // EXTRA:: useEffect to listen for a value change on filters instead of submitting might have been more appropriate
+  // Would likely need debouncing
   const handleFilterChange = event => {
     const { name, value } = event.target;
     setFilters(prevState => ({
@@ -72,12 +74,15 @@ function App() {
     }));
   };
 
-  const handleSubmitFilters = () => {
+  const handleSubmitFilters = event => {
+    event.preventDefault();
+
     fetchLocations();
   }
 
   // EXTRA:: Another example of where Redux could have cleaned up the reloading of data
-  const handleClearFilters = () => {
+  const handleClearFilters = event => {
+    event.preventDefault();
     setFilters(INITIAL_FILTERS);
     setLoad(true);
   }
@@ -105,27 +110,22 @@ function App() {
   return (
     <div className="screen">
 
-      <div className="create-location-container">
-        Create New Location!
-        <NewLocationForm 
-          location={newLocation} 
-          onChange={handleChange} 
+      <div className="create-filter-container">
+
+        <NewLocationForm
+          alert={alert}
+          location={newLocation}
+          onChange={handleChange}
           onSubmit={handleSubmit}
         />
-    
-        <div className="alert-container">
-          {
-            alert ? <div>{alert}</div> : null 
-          }
-        </div>
 
+        <Filters
+          filters={filters}
+          onChange={handleFilterChange}
+          onClick={handleSubmitFilters}
+          onClear={handleClearFilters}
+        />
       </div>
-      <Filters 
-        filters={filters} 
-        onChange={handleFilterChange} 
-        onClick={handleSubmitFilters}
-        onClear={handleClearFilters}
-      />
 
       <div className="locations-container">
         {locations.map((location) => (

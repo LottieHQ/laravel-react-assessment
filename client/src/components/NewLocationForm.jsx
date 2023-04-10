@@ -1,8 +1,9 @@
 import React from 'react'
 
-function NewLocationForm({ location, onChange, onSubmit }) {
+function NewLocationForm({ alert, location, onChange, onSubmit }) {
   return (
-    <form onSubmit={onSubmit}>
+    <form className="new-location-container" onSubmit={onSubmit}>
+      <h3>New location</h3>
       <input onChange={onChange} value={location.name} type="text" placeholder="Name" name="name"/>
       <input onChange={onChange} value={location.description} type="text" placeholder="Description" name="description"/>
       <select value={location.status} onChange={onChange} placeholder="Status" name="status">
@@ -25,6 +26,9 @@ function NewLocationForm({ location, onChange, onSubmit }) {
       >
         Create
       </button>
+      {
+        alert ? <div>{alert}</div> : null
+      }
     </form>
   )
 }
