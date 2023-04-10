@@ -1,4 +1,4 @@
-# Setup instructions
+# Requirements
 1. PHP: Please ensure you have PHP installed:
     1. Mac users can use Homebrew to install php: `brew install php`
     2. To install on windows follow instructions [here](https://www.php.net/manual/en/install.windows.php) 
@@ -12,6 +12,32 @@
     2. Use the command `git clone this-branch-name here`
     3. TODO::Add correct link/branch above
 
+# Setup server instructions
+1. If you are a windows user please ensure you have XAMPP running, with the `MySQL` instance running.
+2. Navigate into the `/server` directory
+3. Run `php artisan migrate`
+    1. If you are prompted to created the database 'locations' please accept
+4. Run `php artisan serve`
+5. Run `php artisan db:seed`
+
+# Setup client instructions
+1. Navigate into the `/client` directory
+2. Run `npm run dev`
+3. A URL should be presented to you, please visit it:
+    1. http://127.0.0.1:5173/
+
+---
+
+### This concludes the setup steps, happy reviewing!
+
+---
+
+# Testing 
+1. Navigate to `/server`
+2. Run `php artisan test`
+3. Test output will be visible in your terminal
+
+---
 
 Please take as much time as you need to take the test, we understand that you may be busy or just not finding time. Also, we think people should not invest much time in assessments as there are better things to do in life.
 
