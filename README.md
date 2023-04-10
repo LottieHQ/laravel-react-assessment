@@ -48,6 +48,8 @@
   - ContextProvider would be a native solution
   - Redux would have allowed me to write much more maintable and readable React code
   - Most importantly remove all the prop drilling I have in this current app
+- I would have used [Cypress](https://www.cypress.io/) to write end to end tests to bring confidence into the front end when changes are made, as well as further re-enforce the confidence with the existing back end tests.
+  - Further to this I would use Cypress to unit test components.
 - I would have used [styled-components](https://styled-components.com/) instead of using CSS files
 - I would have been more mindful of responsiveness
 - I would have been more mindful of accessibility and make the site more suitable for screen readers
@@ -59,8 +61,11 @@
 - Similar to the point above, it might be appropriate for an app such as this to exist as a microservice in the cloud, connected to a large system via message broker such as [RabbitMQ](https://www.rabbitmq.com/)
 - I would have implemented [laravel sail](https://laravel.com/docs/10.x/sanctum) to authentication, especially as its designed for environments where laravel is being used purely as a backend/server
 - To extend the point above, once there is authentication it could be appropriate to create middleware that only lets users of certain permissions to access/create `Locations`
-- I would have leveraged [laravel scopes](https://laravel.com/docs/10.x/eloquent#local-scopes)
-- 
+- I would have leveraged [laravel scopes](https://laravel.com/docs/10.x/eloquent#local-scopes) 
+
+
+## General
+
 
 Please take as much time as you need to take the test, we understand that you may be busy or just not finding time. Also, we think people should not invest much time in assessments as there are better things to do in life.
 
