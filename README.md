@@ -57,6 +57,8 @@
 - I would have written a Service class to extract away searching/filter logic from `LocationController@index`
 - I would dockerised the app using [laravel sail](https://laravel.com/docs/10.x/sail). Making deployment OS agnostic and possibly even being able to deploy this assessment on a hosting service such as Vercel.
 - Similar to the point above, it might be appropriate for an app such as this to exist as a microservice in the cloud, connected to a large system via message broker such as [RabbitMQ](https://www.rabbitmq.com/)
+- I would have implemented [laravel sail](https://laravel.com/docs/10.x/sanctum) to authentication, especially as its designed for environments where laravel is being used purely as a backend/server
+- To extend the point above, once there is authentication it could be appropriate to create middleware that only lets users of certain permissions to access/create `Locations`
 - I would have leveraged [laravel scopes](https://laravel.com/docs/10.x/eloquent#local-scopes)
 - 
 
