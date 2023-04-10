@@ -12,7 +12,7 @@ use App\Models\Location;
 class LocationController extends Controller
 {
   /**
-   * Display a listing of the resource.
+   * Display a listing of the Locations.
    */
   public function index()
   {
@@ -20,7 +20,7 @@ class LocationController extends Controller
   }
 
   /**
-   * Store a newly created resource in storage.
+   * Store a newly created Location in storage.
    */
   public function store(Request $request)
   {
@@ -45,21 +45,5 @@ class LocationController extends Controller
     );
 
     return response()->json($result, 200);
-  }
-
-  /**
-   * Update the specified resource in storage.
-   */
-  public function update(Request $request, string $id)
-  {
-      //
-  }
-
-  /**
-   * Remove the specified resource from storage.
-   */
-  public function destroy(string $id)
-  {
-      //
   }
 }
