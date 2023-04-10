@@ -43,6 +43,7 @@
 # How would I do this differently given more time?
 
 ## Client
+- I would have used TypeScript instead of vanilla JS for extra confidence and safety. As well as better developer quality of life.
 - I would have used a third party state management library such as Redux or Zustand
   - ContextProvider would be a native solution
   - Redux would have allowed me to write much more maintable and readable React code
