@@ -14,9 +14,9 @@ return new class extends Migration
    
     Schema::create('locations', function (Blueprint $table) {
       $table->id();
-      $table->string('name');  // TODO::Maybe we should limit length of name/description
+      $table->string('name');  // EXTRA::Maybe we should limit length of name/description
       $table->string('description');
-      $table->string('status'); //TODO::This could be an enum
+      $table->string('status'); // EXTRA::This could be an enum
       $table->datetime('date_start');
       $table->datetime('date_end');
 
