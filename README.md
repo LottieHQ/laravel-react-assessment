@@ -9,8 +9,7 @@
     3. For all other OS's platforms please find setup instructions [here](https://getcomposer.org/doc/00-intro.md) 
 3. Git: Please ensure you have Git installed:
     1. Download Git for your OS/platform from [here](https://git-scm.com/downloads)
-    2. Use the command `git clone this-branch-name here`
-    3. TODO::Add correct link/branch above
+    2. Use the command `git clone branch-name-here`
 
 # Setup server instructions
 1. Navigate to `/server` and copy `.env.example` into a filed named `.env`
