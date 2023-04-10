@@ -55,6 +55,8 @@
 - I would have been more mindful of accessibility and make the site more suitable for screen readers
 - I would investigate the re-renders currently being triggered by form inputs and consider if the `useRef` hook would be useful to prevent re-renders each keystroke - unlikely but if the page where to become very busy it would be a possible solution
 
+---
+
 ## Server
 - I would have written a Service class to extract away searching/filter logic from `LocationController@index`
 - I would dockerised the app using [laravel sail](https://laravel.com/docs/10.x/sail). Making deployment OS agnostic and possibly even being able to deploy this assessment on a hosting service such as Vercel.
@@ -63,8 +65,18 @@
 - To extend the point above, once there is authentication it could be appropriate to create middleware that only lets users of certain permissions to access/create `Locations`
 - I would have leveraged [laravel scopes](https://laravel.com/docs/10.x/eloquent#local-scopes) 
 
+---
 
-## General
+## Please note
+Throught my work I have left comments prefixed with `EXTRA::` these are thoughts I had whilst dev'ing that supplement the above points about 'what I would have done differently'
+
+---
+
+## Final notes
+There are some differences in my app that are worth noting such as column and tables names:
+- column names are not prefixed with 'location'
+- table is not called 'location' instead 'location'
+- My feature test could not resolve `route('api.location.store')` correctly so I had to hard code the URL
 
 
 Please take as much time as you need to take the test, we understand that you may be busy or just not finding time. Also, we think people should not invest much time in assessments as there are better things to do in life.

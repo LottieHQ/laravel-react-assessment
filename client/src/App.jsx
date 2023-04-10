@@ -50,12 +50,12 @@ function App() {
 
     if (success) {
       setNewLocation(INITIAL_FORM);
-      setLoad(true); // TODO:: add to existing state instead?
+      // EXTRA:: Redux would better bind the reloading of data to the action of 'submitting'
+      setLoad(true);
     }
   }
 
   // EXTRA:: This method should also handle when an <input /> element is of type checkbox
-
   const handleChange = event => {
     const { name, value } = event.target;
     setNewLocation(prevState => ({
@@ -91,7 +91,7 @@ function App() {
   }
 
 
-  // EXTRA:: Similar to the point at the beginning of this file, redux would make handling reload of states much cleaner
+  // EXTRA:: Similar to the point at the beginning of this file, Redux would make handling reload of states much cleaner
   useEffect(() => {
 
     if (load) fetchLocations()

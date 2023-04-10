@@ -21,6 +21,7 @@ class LocationController extends Controller
     $from = $request->query('from');
     $to = $request->query('to');
     
+    //EXTRA::Legibility of this method would have benefitted from being consistent with/without arrow functions
     $locations = Location::when($name, fn ($query) => $query->where('name', $name))
       ->when($status, fn ($query) => $query->where('status', $status))
       ->when($from, function ($query, $from) {
