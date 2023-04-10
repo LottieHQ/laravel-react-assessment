@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+// use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 use App\Models\Location;
@@ -10,7 +10,6 @@ use App\Models\Location;
 
 class storeTest extends TestCase
 {
-  use RefreshDatabase;
   protected $requestData = [
     'name' => 'test name',
     'description' => 'test description',
@@ -24,8 +23,8 @@ class storeTest extends TestCase
   protected function assertLocationCreated($location, $data = []): void
   {
     $this->assertDatabaseHas('locations', array_merge([
-      'name' => $this->requestData['name'], 
-      'description' => $this->requestData['description'], 
+      'name' => $this->requestData['name'],
+      'description' => $this->requestData['description'],
       'status' => $this->requestData['status'],
       'date_start' => $this->requestData['date_start'],
       'date_end' => $this->requestData['date_end'],

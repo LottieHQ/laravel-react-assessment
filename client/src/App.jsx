@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import './App.css';
-import Location from './components/Location';
+import { getLocations } from './api/getLocations';
+import { createLocation } from './api/createLocation';
 import NewLocationForm from './components/NewLocationForm';
+import Location from './components/Location';
 
-const APP_URL = "http://127.0.0.1:8000/api/";
 const INITIAL_FORM = {
   name: "",
   description: "",
@@ -28,27 +29,19 @@ function App() {
   const [alert, setAlert] = useState("");
 
   // HANDLE METHODS START
+
   async function handleSubmit(event){
     event.preventDefault();
-    const response = await fetch("http://127.0.0.1:8000/api/locations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newLocation)
-    });
-    let result = await response.json();
-    
-    // EXTRA:: Ideally the alerts would clear after short period of time
-    if (response.ok) {
-      setAlert("Successfully created new Location!");
-      setNewLocation(INITIAL_FORM);
-    } else {
-      setAlert(result);
-    }
+    const [success, result] = await createLocation(newLocation);
+
+    // EXTRA:: Ideally the 'alert' would clear after short period of time
+    setAlert(result);
+
+    if (success) setNewLocation(INITIAL_FORM);
   }
 
   // EXTRA:: This method should also handle when an <input /> element is of type checkbox
+
   const handleChange = event => {
     const { name, value } = event.target;
     setNewLocation(prevState => ({
@@ -62,9 +55,8 @@ function App() {
 
   useEffect(() => {
     async function fetchLocations() {
-      let response = await fetch("http://127.0.0.1:8000/api/locations");
-      let result = await response.json()
-      setLocations(result)
+      const locations = await getLocations();
+      setLocations(locations);
     }
 
     fetchLocations()

@@ -6,9 +6,9 @@ function NewLocationForm({ location, onChange, onSubmit }) {
       <input onChange={onChange} value={location.name} type="text" placeholder="Name" name="name"/>
       <input onChange={onChange} value={location.description} type="text" placeholder="Description" name="description"/>
       <select value={location.status} onChange={onChange} placeholder="Status" name="status">
-        <option disabled value="">Please selecte a status</option>
-        <option value="closed">closed</option>
+        <option disabled value="">Please select a status</option>
         <option value="open">open</option>
+        <option value="closed">closed</option>
       </select>
       <div className="date-picker-container">
         <div className="date-and-label">
