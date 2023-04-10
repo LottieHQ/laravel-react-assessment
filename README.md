@@ -13,17 +13,19 @@
     3. TODO::Add correct link/branch above
 
 # Setup server instructions
-1. If you are a windows user please ensure you have XAMPP running, with the `MySQL` instance running.
-2. Navigate into the `/server` directory
-3. Run `php artisan migrate`
+1. Navigate to `/server` and copy `.env.example` into a filed named `.env`
+2. If you are a windows user please ensure you have XAMPP running, with the `MySQL` instance running.
+3. Navigate into the `/server` directory
+4. Run `php artisan migrate`
     1. If you are prompted to created the database 'locations' please accept
-4. Run `php artisan serve`
-5. Run `php artisan db:seed`
+5. Run `php artisan serve`
+6. Run `php artisan db:seed`
 
 # Setup client instructions
-1. Navigate into the `/client` directory
-2. Run `npm run dev`
-3. A URL should be presented to you, please visit it:
+1. Navigate into the `/client` directory in your terminal
+2. Run `npm install`
+3. Run `npm run dev`
+4. A URL should be presented to you, please visit it:
     1. http://127.0.0.1:5173/
 
 ---
@@ -38,6 +40,25 @@
 3. Test output will be visible in your terminal
 
 ---
+
+# How would I do this differently given more time?
+
+## Client
+- I would have used a third party state management library such as Redux or Zustand
+  - ContextProvider would be a native solution
+  - Redux would have allowed me to write much more maintable and readable React code
+  - Most importantly remove all the prop drilling I have in this current app
+- I would have used [styled-components](https://styled-components.com/) instead of using CSS files
+- I would have been more mindful of responsiveness
+- I would have been more mindful of accessibility and make the site more suitable for screen readers
+- I would investigate the re-renders currently being triggered by form inputs and consider if the `useRef` hook would be useful to prevent re-renders each keystroke - unlikely but if the page where to become very busy it would be a possible solution
+
+## Server
+- I would have written a Service class to extract away searching/filter logic from `LocationController@index`
+- I would dockerised the app using [laravel sail](https://laravel.com/docs/10.x/sail). Making deployment OS agnostic and possibly even being able to deploy this assessment on a hosting service such as Vercel.
+- Similar to the point above, it might be appropriate for an app such as this to exist as a microservice in the cloud, connected to a large system via message broker such as [RabbitMQ](https://www.rabbitmq.com/)
+- I would have leveraged [laravel scopes](https://laravel.com/docs/10.x/eloquent#local-scopes)
+- 
 
 Please take as much time as you need to take the test, we understand that you may be busy or just not finding time. Also, we think people should not invest much time in assessments as there are better things to do in life.
 

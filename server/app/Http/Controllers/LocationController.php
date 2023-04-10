@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-use Illuminate\Support\Facades\Log;
-
 use Carbon\Carbon;
 use App\Models\Location;
 
@@ -22,8 +20,6 @@ class LocationController extends Controller
     $status = $request->query('status');
     $from = $request->query('from');
     $to = $request->query('to');
-    Log::info('index...');
-
     
     $locations = Location::when($name, fn ($query) => $query->where('name', $name))
       ->when($status, fn ($query) => $query->where('status', $status))
