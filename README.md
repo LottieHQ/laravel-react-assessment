@@ -17,8 +17,8 @@
 3. Navigate into the `/server` directory
 4. Run `php artisan migrate`
     1. If you are prompted to created the database 'locations' please accept
-5. Run `php artisan serve`
-6. Run `php artisan db:seed`
+5. Run `php artisan db:seed`
+6. Run `php artisan serve`
 
 # Setup client instructions
 1. Navigate into the `/client` directory in your terminal
