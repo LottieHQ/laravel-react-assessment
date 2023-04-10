@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css';
+import { API_URL } from './api/config';
 import { getLocations } from './api/getLocations';
 import { createLocation } from './api/createLocation';
 import NewLocationForm from './components/NewLocationForm';
 import Location from './components/Location';
+import Filters from './components/Filters';
 
 const INITIAL_FORM = {
   name: "",
@@ -12,6 +14,13 @@ const INITIAL_FORM = {
   date_start: "",
   date_end: "",
 };
+
+const INITIAL_FILTERS = {
+  name: "",
+  status: "",
+  to: "",
+  from: "",
+}
 
 function App() {
   // EXTRA:: Given extra time I would use a third party state managment library such as Redux or Zustand
@@ -26,6 +35,7 @@ function App() {
     date_start: "",
     date_end: "",
   });
+  const [filters, setFilters] = useState(INITIAL_FILTERS);
   const [alert, setAlert] = useState("");
   const [load, setLoad] = useState(true);
 
@@ -54,12 +64,32 @@ function App() {
     }));
   };
 
+  const handleFilterChange = event => {
+    const { name, value } = event.target;
+    setFilters(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmitFilters = () => {
+    fetchLocations();
+  }
+
+  // EXTRA:: Another example of where Redux could have cleaned up the reloading of data
+  const handleClearFilters = () => {
+    setFilters(INITIAL_FILTERS);
+    setLoad(true);
+  }
+  
   // HANDLE METHODS END
 
   async function fetchLocations() {
-    const locations = await getLocations();
+    // EXTRA:: Would be ideal to only attach query strings key:value when the value is not empty/null
+    const locations = await getLocations(new URLSearchParams(filters));
     setLocations(locations);
   }
+
 
   // EXTRA:: Similar to the point at the beginning of this file, redux would make handling reload of states much cleaner
   useEffect(() => {
@@ -88,7 +118,14 @@ function App() {
             alert ? <div>{alert}</div> : null 
           }
         </div>
+
       </div>
+      <Filters 
+        filters={filters} 
+        onChange={handleFilterChange} 
+        onClick={handleSubmitFilters}
+        onClear={handleClearFilters}
+      />
 
       <div className="locations-container">
         {locations.map((location) => (
