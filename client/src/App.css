@@ -1,3 +1,6 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
 
 body {
   margin: 0;
@@ -8,30 +11,13 @@ body {
   background-color: #213547;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
 
 /* CUSTOM STYLES */
 /* EXTRA::Given extra time I would have used the package 'styled-components' to style my react components
   I find it much nicer to work with compared to a .jsx file and separate css file/module
   Especially as it organises logical groupings of JS and CSS into a single area.
 */
+
 
 #root {
   display:flex; 
@@ -56,6 +42,9 @@ h1 {
   width:50%;
   height: 100%;
   border: 1px solid blue;
+  padding: 1rem;
+  border-radius: 2rem;
+
 
 }
 form {
