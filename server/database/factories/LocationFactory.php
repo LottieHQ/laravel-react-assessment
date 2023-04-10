@@ -12,6 +12,9 @@ use App\Models\Location;
  */
 class LocationFactory extends Factory
 {
+
+  protected $model = Location::class;
+
   /**
    * Define the model's default state.
    *

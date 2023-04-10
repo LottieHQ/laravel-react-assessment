@@ -17,8 +17,8 @@ return new class extends Migration
       $table->string('name');  // TODO::Maybe we should limit length of name/description
       $table->string('description');
       $table->string('status'); //TODO::This could be an enum
-      $table->date('date_start');
-      $table->date('date_end');
+      $table->datetime('date_start');
+      $table->datetime('date_end');
 
       $table->timestamps();
     });
