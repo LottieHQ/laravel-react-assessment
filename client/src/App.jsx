@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import './App.css';
 import Location from './components/Location';
 import NewLocationForm from './components/NewLocationForm';
 
