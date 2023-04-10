@@ -27,6 +27,7 @@ function App() {
     date_end: "",
   });
   const [alert, setAlert] = useState("");
+  const [load, setLoad] = useState(true);
 
   // HANDLE METHODS START
 
@@ -37,7 +38,10 @@ function App() {
     // EXTRA:: Ideally the 'alert' would clear after short period of time
     setAlert(result);
 
-    if (success) setNewLocation(INITIAL_FORM);
+    if (success) {
+      setNewLocation(INITIAL_FORM);
+      setLoad(true); // TODO:: add to existing state instead?
+    }
   }
 
   // EXTRA:: This method should also handle when an <input /> element is of type checkbox
@@ -52,15 +56,21 @@ function App() {
 
   // HANDLE METHODS END
 
+  async function fetchLocations() {
+    const locations = await getLocations();
+    setLocations(locations);
+  }
 
+  // EXTRA:: Similar to the point at the beginning of this file, redux would make handling reload of states much cleaner
   useEffect(() => {
-    async function fetchLocations() {
-      const locations = await getLocations();
-      setLocations(locations);
-    }
 
-    fetchLocations()
-  }, [])
+    if (load) fetchLocations()
+
+    return () => {
+      setLoad(false);
+    }
+  }, [load]);
+
 
   return (
     <div className="screen">
@@ -82,7 +92,8 @@ function App() {
       <div className="locations-container">
         {locations.map((location) => (
           <Location
-            key={`location-key-${location.id}`} //EXTRA:: Would be more appropriate to use a package such as 'uuid' for unique keys
+             //EXTRA:: Would be more appropriate to use a package such as 'uuid' for unique keys
+            key={`location-key-${location.id}`}
             location={location}/>
         ))}
       </div>
