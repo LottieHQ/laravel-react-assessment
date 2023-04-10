@@ -76,6 +76,7 @@ function App() {
     <div className="screen">
 
       <div className="create-location-container">
+        Create New Location!
         <NewLocationForm 
           location={newLocation} 
           onChange={handleChange} 

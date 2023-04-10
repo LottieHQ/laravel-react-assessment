@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
+use Illuminate\Support\Facades\Log;
+
 use Carbon\Carbon;
 use App\Models\Location;
 
@@ -14,9 +16,23 @@ class LocationController extends Controller
   /**
    * Display a listing of the Locations.
    */
-  public function index()
-  {
-    return response()->json(Location::all(), 200);
+  public function index(Request $request)
+  { 
+    $name = $request->query('name');
+    $status = $request->query('status');
+    $from = $request->query('from');
+    $to = $request->query('to');
+    
+    $locations = Location::when($name, fn ($query) => $query->where('name', $name))
+      ->when($status, fn ($query) => $query->where('status', $status))
+      ->when($from, function ($query, $from) {
+        $query->where('date_start', '>=', date($from));
+      })
+      ->when($to, function ($query, $to) {
+          $query->where('date_start', '<=', date($to));
+      })
+      ->get();
+    return response()->json($locations, 200);
   }
 
   /**
