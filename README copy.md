@@ -2,9 +2,9 @@
 
 
 - Start by downloading the repo. You will need to have git connected to your terminal or GUI. 
-- In your terminal; Composer installing & npm install. (Please make sure you have php and composer installed)
+- In your terminal; Composer installing & npm install. (Please make sure you have php, composer & node installed)
 - Copy the .env.example and create .env
-- Set up your database (I use TablePlus). I named my connection laravel_react_app
+- Set up your database (I use TablePlus). I named my connection laravel_react_assessment
 - Php artisan migrate. To migrate the database.
 - Next, you want to spin up your local servers.
 - If using valet you can use your laravel app name & add .test on the end. If not php artisan serve will work. You should see port 8000, unless already in use.
@@ -35,3 +35,4 @@
 - Added middleware so only authenticated users can create, update or delete. 
 - Used Laravel Sanctum or passport for authentication
 - moved validation to own request.
+- I have tried to include what I would do & how I would try to display or edit the data.

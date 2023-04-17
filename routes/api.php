@@ -22,6 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(["prefix" => 'location'], function () {
     Route::get("/", [LocationController::class, 'index'])->name('api.locations.index');
     Route::post('/', [LocationController::class, 'store'])->name('api.locations.store');
-    Route::put('/',  [LocationController::class, 'update'])->name('api.locations.update');
+    Route::put('/{location:id}',  [LocationController::class, 'update'])->name('api.locations.update');
 });
 
