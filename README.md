@@ -1,63 +1,40 @@
-# laravel-react-assessment
+## Hello 👋 Please find instructions below
 
-Please take as much time as you need to take the test, we understand that you may be busy or just not finding time. Also, we think people should not invest much time in assessments as there are better things to do in life.
+- Thank you for taking the time to look over my test! I have not managed to get very far through this, but I have tried my hardest to demonstrate and outline what I would have done given more time & if I knew more about Api's and react!
 
-We expect you to spend 3 or 4 hours on this technical task, which we think is reasonable.
 
-This assessment is intentionally bare on specifics as we want to give you some freedom, so feel free to focus on your strength, whether that’s code cleanliness, front-end design, one of the bonus features, etc. We are aware that given the time spent one can only provide certain builtin quality
+- Start by downloading the repo. You will need to have git connected to your terminal or GUI. 
+- In your terminal; Composer installing & npm install. (Please make sure you have php, composer & node installed)
+- Copy the .env.example and create .env
+- Set up your database (I use TablePlus). I named my connection laravel_react_assessment
+- Php artisan migrate. To migrate the database.
+- Next, you want to spin up your local servers.
+- If using valet you can use your laravel app name & add .test on the end. If not php artisan serve will work. You should see port 8000, unless already in use.
+- Secondly you'll want to start your React server.
+- In your terminal, cd into react. Type npm run dev and this should start the server on port 3000, or in my case today, 5174.
+- The seeders should be ready to use so one your database is connected you can run db:seed
 
-## Instructions
+## Things I would do differently if I had more time.
 
-Please follow these instructions carefully, please note that following the instructions thoroughly is part of the assessment.
+- Considering I haven't worked with react & Laravel before or API's this was interesting for me to learn how to start this process. Although, I admit, given the time constraints i didn't ge very far!
+- I think most of my time was spent reading & learning how to build a React & laravel project. Either way I still very much enjoyed this challenge & have learnt a lot along the way!
+- I tried to outline what I would do & there is a tremendous amount of refactoring & fine-tuning to do but I hope you are able to see what I was trying to demonstrate.
+## Client.
+- Well there are lots of things I would have changed! The whole design to begin with!
+- Getting data to show in the front end. I understand to use axios however, I believe from my reading Redux is often used
+- Validation on the front end to show and to make sure end date is after the start date
+- I did try to get tailwind set up in React so i didn't spend as much time on basic css, but I didn't want to spend too much time trying to figure out why it wasn't working so stuck to basic css. In future i'd use tailwind.
+- I would have made sure the site is responsive
+- Ensured create, update and delete buttons were working. The latter two would be icons.
+- Pagination
 
-- Fork this repo.
-- Work on your own copy of the repo.
-- Your work should be easily deployable either locally in a laptop, or in a cloud provider service, such as Vercel, etc.
-- Please update the README so that it includes instructions on how to run, or deploy, and how to test the submitted code.
-- Please make sure that we can easily run and test the code, please do not assume that we have already setup any specific database or dependency.
-- Once you've finished please subbmit a Pull Request (PR) to this original repo.
-- We may ask you to comment on some implementations or even suggest some code changes, please react to them as you would normally do with any PR.
-- Once we're done reviewing we will contact you via email or phone.
-
-## Tasks
-
-### Laravel
-
-Please use the Laravel framework for this task.
-
-- Create a Laravel Application that connects to MySQL.
-- Create an API endpoint that receives: `Date Start`, `Date End`, `Status` (open or closed), `Location Name` and `Location Description` (mandatory fields) and returns location data.
-- Include the below PHPUnit test for your API and ensure that it passes:
-```
-public function api_can_store_location_data()
-{
-$this->withoutExceptionHandling();
-$location = factory(Location::class)->create(); $this->requestData[‘location_name'] = $location->location_name; $this->requestData[‘location_description'] = $location->location_description; $this->requestData[‘date_start’] = $location->date_start; $this->requestData[‘date_end’] = $location->date_end;
-$this->json('POST', route('api.location.store'), $this->requestData) ->assertSuccessful();
-$this->assertLocationCreated($location); }
-```
-```
-protected function assertLocationCreated($location, $data = [ ])
-{
-$this->assertDatabaseHas('location', array_merge([
-'location_name' => $this->requestData['location_name'], 'location_description' => $this->requestData['location_description'], 'date_start' => $this->requestData['date_start'],
-'date_end' => $this->requestData['date_end'],
-'location_id' => $location->id,
-], $data)); }
-```
-
-#### Bonus points
-
-- Data submitted via the API should be validated and appropriate error messages returned for things like incorrectly formatted dates.
-
-### React
-
-Please use React and Node for this task.
-
-- Create a simple list page that displays all the data that has been added to the database through the Laravel API.
-- Create a form on the above list page that will enable you to run a Query in the Laravel backend to filter the results that are displayed via Date Range, Status and Location Name fields.
-
-#### Bonus points
-
-- The frontend should be simple but any additional work put into the presentation will be included in the evaluation.
-- Pagination.
+## Server.
+- Ensured the data was being passed as a json into the api. 
+- In the index there the Location model would be queried to help with the front-end sorting & pagination.
+- More secure back end validation
+- added tests and got them to work
+- pest tests.
+- Added middleware so only authenticated users can create, update or delete. 
+- Used Laravel Sanctum or passport for authentication
+- moved validation to own request.
+- I have tried to include what I would do & how I would try to display or edit the data.
