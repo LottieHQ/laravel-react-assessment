@@ -5,16 +5,21 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LocationRequest;
 use App\Models\Location;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
 class LocationController extends Controller
 {
-    public function index(Request $request): Collection
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function index(Request $request)
     {
-        return Location::all();
+        return Response::json(Location::all(), 200);
     }
 
     public function create()
@@ -22,6 +27,10 @@ class LocationController extends Controller
         //
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -55,6 +64,11 @@ class LocationController extends Controller
         return Response::json($data, 200);
     }
 
+    /**
+     * @param LocationRequest $request
+     * @param Location $location
+     * @return void
+     */
     public function update(LocationRequest $request, Location $location)
     {
         //Validation would be in request
@@ -65,6 +79,11 @@ class LocationController extends Controller
         //new instance & return response.
     }
 
+    /**
+     * @param Request $request
+     * @param Location $location
+     * @return JsonResponse
+     */
     public function delete(Request $request, Location $location)
     {
         $location->delete();
@@ -72,6 +91,10 @@ class LocationController extends Controller
         return Response::json('success', 200);
     }
 
+    /**
+     * @param Request $request
+     * @return LengthAwarePaginator
+     */
     public function filterLocations(Request $request)
     {
         $status = $request->status;
