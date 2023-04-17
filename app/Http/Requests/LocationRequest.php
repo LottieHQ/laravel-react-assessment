@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LocationRequest extends FormRequest
@@ -17,12 +18,16 @@ class LocationRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
+     * @return array<string, Rule|array|string>
      */
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:250',
+            'description' => 'required|string',
+            'status' => 'required|in:open,closed',
+            'date_start' => 'required|date',
+            'date_end' => 'required|date',
         ];
     }
 }

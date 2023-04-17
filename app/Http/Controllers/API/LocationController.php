@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LocationRequest;
 use App\Models\Location;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -24,11 +25,11 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'description' => 'required',
+            'name' => 'required|string|max:250',
+            'description' => 'required|string',
             'status' => 'required',
-            'date_start' => 'required',
-            'date_end' => 'required',
+            'date_start' => 'required|date',
+            'date_end' => 'required|date',
         ]);
 
         if ($validator->fails()) {
@@ -41,7 +42,9 @@ class LocationController extends Controller
             ]);
         }
 
-        $location = Location::create([
+        $location = new Location;
+
+        $data = $location->create([
             'name' => $request['name'],
             'description' => $request['description'],
             'status' => $request['status'],
@@ -49,21 +52,8 @@ class LocationController extends Controller
             'date_end' => $request['date_end'],
         ]);
 
-        return Response::json($location, 200);
+        return Response::json($data, 200);
     }
 
-    public function update()
-    {
-        //
-    }
-
-    public function delete(Request $request, Location $location)
-    {
-        $location->delete();
-    }
-
-    public function filterLocations()
-    {
-        //
-    }
+    
 }

@@ -74,10 +74,10 @@ export default function App() {
                                         Description
                                     </th>
                                     <th scope="col">
-                                        Start Time
+                                        Start Date
                                     </th>
                                     <th scope="col">
-                                        End Time
+                                        End Date
                                     </th>
                                     <th>
                                         Status
@@ -96,8 +96,11 @@ export default function App() {
                                         <td>{location.end_time}</td>
                                         <td><span className={location.status === 'Open' ? 'status1' : 'status2'}>{location.status}</span></td>
                                         <td>
-                                            <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                                                Edit<span className="sr-only"></span>
+                                            <a href="#">
+                                                Edit
+                                            </a>
+                                            <a href="#" >
+                                                Delete
                                             </a>
                                         </td>
                                     </tr>

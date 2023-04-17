@@ -203,3 +203,11 @@ input {
   border: 1px solid indianred;
   border-radius: 25px;
 }
+
+a {
+  padding: 4px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
