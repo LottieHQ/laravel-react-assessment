@@ -55,5 +55,15 @@ class LocationController extends Controller
         return Response::json($data, 200);
     }
 
+    public function update(LocationRequest $request, Location $location)
+    {
+        //Validation would be in request
+        $input = $request->all();
+
+        $location->update($input);
+
+
+    }
+
     
 }
