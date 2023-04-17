@@ -16,4 +16,9 @@ class Location extends Model
         'location_name',
         'location_description'
     ];
+
+    protected $casts = [
+        'date_start' => 'date:Y-m-d',
+        'date_end' => 'date:Y-m-d',
+    ];
 }
