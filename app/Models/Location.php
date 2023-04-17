@@ -21,4 +21,9 @@ class Location extends Model
         'date_start' => 'date:Y-m-d',
         'date_end' => 'date:Y-m-d',
     ];
+
+    const STATUSES = [
+        'open' => 'Open',
+        'closed' => 'Closed'
+    ];
 }

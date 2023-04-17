@@ -19,5 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get("/location", [LocationController::class, 'index'])->name('api.locations.index');
-Route::post('/location', [LocationController::class, 'store'])->name('api.locations.store');
+Route::group(["prefix" => 'location'], function () {
+    Route::get("/", [LocationController::class, 'index'])->name('api.locations.index');
+    Route::post('/', [LocationController::class, 'store'])->name('api.locations.store');
+    Route::put('/',  [LocationController::class, 'update'])->name('api.locations.update');
+});
+
