@@ -62,8 +62,24 @@ class LocationController extends Controller
 
         $location->update($input);
 
-
     }
 
-    
+    public function delete(Request $request, Location $location)
+    {
+        $location->delete();
+
+        return Response::json('success', 200);
+    }
+
+    public function filterLocations(Request $request)
+    {
+        $status = $request->status;
+
+        $filters = Location::query()->when($status, function ($query) use ($status) {
+            $query->where('status', $status);
+        });
+
+        return $filters->paginate(10);
+
+    }
 }
