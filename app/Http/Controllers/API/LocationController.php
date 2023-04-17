@@ -62,6 +62,7 @@ class LocationController extends Controller
 
         $location->update($input);
 
+        //new instance & return response.
     }
 
     public function delete(Request $request, Location $location)
@@ -80,6 +81,5 @@ class LocationController extends Controller
         });
 
         return $filters->paginate(10);
-
     }
 }
