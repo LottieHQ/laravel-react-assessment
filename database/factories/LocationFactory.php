@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Location>
+ * @extends Factory<Location>
  */
 class LocationFactory extends Factory
 {
@@ -17,7 +18,11 @@ class LocationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'date_start' => fake()->date(),
+            'date_end' => fake()->date(),
+            'status' => 'status', //to make
+            'location_name' => fake()->name(),
+            'location_description' => fake()->paragraph(),
         ];
     }
 }

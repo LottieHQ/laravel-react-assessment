@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'date_start',
+        'date_end',
+        'status',
+        'location_name',
+        'location_description'
+    ];
 }
