@@ -35,8 +35,8 @@ class LocationController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:250',
-            'description' => 'required|string',
-            'status' => 'required',
+            'description' => 'required|string|max:500',
+            'status' => 'required|in:open,closed',
             'date_start' => 'required|date',
             'date_end' => 'required|date',
         ]);
